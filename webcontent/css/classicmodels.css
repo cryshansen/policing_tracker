@@ -1,0 +1,172 @@
+body
+{
+	text-align: center;
+	color: #444;
+	background-image: url('../images/cmi/page_bg.gif');
+	background-repeat: repeat;
+}
+
+#container
+{
+	text-align: left;
+	margin: 0 auto;
+	width: 950px;
+	background-color: white;
+	border: solid thin slategray; 
+}
+
+#header {
+	font-family: "times new roman";
+	background: MidnightBlue;
+	height: 70px;
+	border: solid thin black; 	
+	background-image: url('../images/treeborder copy.png');
+}
+
+#header h1
+{
+	text-align: center;
+	font-size: 50;
+	font-weight: bold;
+	font-style: italic;
+	color: SeaGreen;
+	margin: 10px;
+}
+
+#navigation
+{
+	float: left;
+	width: 130px;
+	display: inline;
+	margin-left: 0px;
+	padding: 0px 0;
+}
+
+#navigation ul
+{
+	margin: 0 0;
+	padding: 0 0;
+	list-style-type: none;
+}
+
+#navigation ul a
+{
+	display: block;
+	text-decoration: none;
+	background: #036;
+	color: #fff;
+	padding: .2em .5em;
+	border-bottom: 1px solid #fff;
+	width: 130px;
+}
+
+#navigation ul a:hover
+{
+	background: #69C;
+	color: #000;
+}
+
+#navigation ul li 
+{
+	display: inline;
+}
+
+#content
+{
+	float: left;
+	width: 775px;
+	margin-left: 15px;
+	padding: 0px 10px;
+	color: black;
+	font-size: 10pt;
+	overflow: auto; 
+	height: 525px;
+}
+
+#content h2
+{
+	margin-top: 0;
+	color: #B23B00;
+	font-weight: normal;
+}
+
+#footer
+{
+	clear: both;
+	background: #387A9B;
+	color: #fff;
+	padding: 5px 10px;
+	text-align: center;
+	font-size: 80%;
+	border: solid thin black; 
+}
+
+#footer a:link a:active a:hover a:visited
+{
+	color: pink;
+}
+
+.success 
+{
+	color:	green;
+	font-weight: bold;
+}
+
+.failure 
+{
+	border: thin outset black;
+	background-color: khaki;
+	color: red;
+	font-weight: bold;	
+}
+
+#content a 
+{
+	color: green;	
+}
+
+#content caption 
+{
+	font-weight: bold;
+	font-size: 16pt;
+}
+
+#content th 
+{
+	background-color:  #036;
+	color: #FFF;
+}
+
+#content tr
+{
+	background-color: #B0C4D7;
+}
+
+#content tr.alternative 
+{
+	background-color: #D7E0EA;
+}
+
+
+.productName_Column {
+	width: 450px;
+	text-alignt: left;
+}
+
+.productDescription_Column {
+	width: 500px;
+	text-alignt: left;
+}
+
+.inStock_Column {
+	width: 50px;
+	text-align: center;
+}
+
+.quantityInStock_Column {
+	text-align: center;
+}
+
+.msrp_Column {
+	text-align: right;
+}
