@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+      <property name="url">
+        <value>jdbc:mysql://antares.nait.ca/cst0773_db</value>
+      </property>
+      <property name="username" value="cst0773" />
+      <property name="password" value="cst0773" />
+    </bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource" />
+    	<property name="hibernateProperties">
+    		<props>
+    			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+    			<prop key="hibernate.show_sql">true</prop>
+    		</props>
+    	</property>
+    	<property name="annotatedClasses">
+    		<list>
+    			<value>lab2.entity.District</value>
+    			<value>lab2.entity.Officer</value>
+    			<value>lab2.entity.Species</value>
+    			<value>lab2.entity.Act</value>
+    			<value>lab2.entity.EnforRefCode</value>
+    			<value>lab2.entity.Offender</value>
+    			<value>lab2.entity.Charge</value>
+    			<value>lab2.entity.Prosecution</value>
+
+    		</list>
+    	</property>
+    </bean>
+ 
+    
+    <bean id="districtDao" class="lab2.dao.DistrictDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+      <bean id="officerDao" class="lab2.dao.OfficerDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+      <bean id="speciesDao" class="lab2.dao.SpeciesDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+ 	<bean id="actDao" class="lab2.dao.ActDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+      <bean id="enforRefCodesDao" class="lab2.dao.EnforRefCodeDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="offenderDao" class="lab2.dao.OffenderDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+     <bean id="chargesDao" class="lab2.dao.ChargesDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="prosecutionDao" class="lab2.dao.ProsecutionDao">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+   
+  
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+ 		<property name="sessionFactory">
+ 			<ref local="sessionFactory"/>
+ 		</property>
+ 	</bean>
+ 	
+</beans>
