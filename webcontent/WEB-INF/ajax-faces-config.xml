@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+    
+    <managed-bean>
+        <managed-bean-name>timeBean</managed-bean-name>
+        <managed-bean-class>examples.ajax.TimeBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+      	<managed-bean-name>lotteryBean</managed-bean-name>
+        <managed-bean-class>examples.ajax.LotteryBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+      	<managed-bean-name>vehicleBean</managed-bean-name>
+        <managed-bean-class>examples.controller.VehicleController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+ 
+    <managed-bean>
+      	<managed-bean-name>mediaBean</managed-bean-name>
+        <managed-bean-class>classicmodels.controller.MediaBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+</faces-config>

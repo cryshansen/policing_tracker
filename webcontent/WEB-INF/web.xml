@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ist334-sep2007</display-name>
+  <context-param>
+    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    <param-value>.jspx</param-value>
+  </context-param>
+  <context-param>
+    <param-name>facelets.DEVELOPMENT</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.sun.faces.validateXml</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.sun.faces.verifyObjects</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <description>Comma separated list of URIs of (additional) faces config files.
+            (e.g. /WEB-INF/my-config.xml)
+            See JSF 1.0 PRD2, 10.3.2
+            Attention: You do not need to put /WEB-INF/faces-config.xml in here.
+    </description>
+    <param-name>javax.faces.CONFIG_FILES</param-name>
+    <param-value>/WEB-INF/classicmodels-faces-config.xml,/WEB-INF/lab2-faces-config.xml,/WEB-INF/ajax-faces-config.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>org.richfaces.SKIN</param-name>
+    <param-value>deepMarine</param-value>
+  </context-param>
+  <filter>
+    <filter-name>MyFacesExtensionsFilter</filter-name>
+    <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+    <init-param>
+      <description>Set the size limit for uploaded files.
+            Format: 10 - 10 bytes
+                    10k - 10 KB
+                    10m - 10 MB
+                    1g - 1 GB
+        </description>
+      <param-name>maxFileSize</param-name>
+      <param-value>20m</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <display-name>RichFaces Filter</display-name>
+    <filter-name>richfaces</filter-name>
+    <filter-class>org.ajax4jsf.Filter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MyFacesExtensionsFilter</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>MyFacesExtensionsFilter</filter-name>
+    <url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>richfaces</filter-name>
+    <servlet-name>Faces Servlet</servlet-name>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>ProductLineImageHandler</servlet-name>
+    <servlet-class>classicmodels.servlets.ProductLineImageHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProductLineImageHandler</servlet-name>
+    <url-pattern>/ProductLineImageHandler</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jspx</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+	<managed-bean>
+		<managed-bean-name>offenderController</managed-bean-name>
+		<managed-bean-class>lab2.controller.OffenderController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<navigation-rule>
+		<display-name>offenderListing</display-name>
+		<from-view-id>/jsp/lab2/offenderListing.jspx</from-view-id>
+		<navigation-case>
+			<from-action>#{offenderController.addNew}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/offenderForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{offenderController.editOffender}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/offenderForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{offenderController.deleteOffender}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/offenderListing.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>offenderFormListing</display-name>
+		<from-view-id>/jsp/lab2/offenderForm.jspx</from-view-id>
+		<navigation-case>
+			<from-action>#{offenderController.addOffender}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/offenderListing.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{offenderController.updateOffender}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/offenderListing.jspx</to-view-id>
+		</navigation-case>
+		
+	</navigation-rule>
+	<managed-bean>
+		<managed-bean-name>prosecutionController</managed-bean-name>
+		<managed-bean-class>lab2.controller.ProsecutionController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<navigation-rule>
+		<from-view-id>/prosecutionListing.jspx</from-view-id>
+		<navigation-case>
+			<from-action>#{prosecutionController.addNew}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/prosecutionForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{prosecutionController.editProsecution}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/prosecutionForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{prosecutionController.deleteProsecution}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/prosecutionListing.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{prosecutionController.reportProsecution}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/prosecutionReport.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/ProsecutionForm.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{prosecutionController.addProsecution}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/prosecutionListing.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{prosecutionController.updateProsecution}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/lab2/prosecutionListing.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<managed-bean>
+		<managed-bean-name>findProsecutionsBean</managed-bean-name>
+		<managed-bean-class>lab2.controller.FindProsecutionsByAllController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>offenderQueryController</managed-bean-name>
+		<managed-bean-class>lab2.controller.OffenderQueryController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>officerQueryController</managed-bean-name>
+		<managed-bean-class>lab2.controller.OfficerQueryController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>chargesQueryController</managed-bean-name>
+		<managed-bean-class>lab2.controller.ChargesQueryController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>enforRefCodeQueryController</managed-bean-name>
+		<managed-bean-class>lab2.controller.EnforRefCodeQueryController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean> 
+</faces-config>

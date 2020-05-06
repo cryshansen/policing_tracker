@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+    version="1.2">
+
+	<managed-bean>
+		<managed-bean-name>productController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.ProductController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>paymentController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.PaymentController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>customerQueryBean</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.CustomerQueryController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>findProductsByAnyController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.FindProductsByAnyController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>findProductsByAllController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.FindProductsByAllController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>productLineController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.ProductLineController</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>showProductLineController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.ShowProductLineController</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>officeController</managed-bean-name>
+		<managed-bean-class>classicmodels.controller.OfficeController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<navigation-rule>
+		<from-view-id>/jsp/cmi/paymentQuery.jspx</from-view-id>
+		<navigation-case>
+			<from-action>#{paymentController.addNew}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/paymentForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{paymentController.editPayment}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/paymentForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{paymentController.deletePayment}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/paymentQuery.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<display-name>officeForm</display-name>
+		<from-view-id>/jsp/cmi/officeForm.jspx</from-view-id>
+		<navigation-case>
+			<from-action>#{officeController.addOffice}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/displayOfficeListing.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{officeController.updateOffice}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/displayOfficeListing.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+		
+	<navigation-rule>
+		<display-name>displayOfficeListing</display-name>
+		<from-view-id>/jsp/cmi/displayOfficeListing.jspx</from-view-id>
+		<navigation-case>
+			<from-action>#{officeController.addNew}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/officeForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{officeController.editOffice}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/officeForm.jspx</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{officeController.deleteOffice}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/jsp/cmi/displayOfficeListing.jspx</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
+
+</faces-config>
