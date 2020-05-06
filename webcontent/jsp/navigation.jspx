@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	version="2.0">	
+<ui:composition >
+
+<span>
+
+<style type="text/css">
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+#ddblueblockmenu{
+border: 1px solid black;
+border-bottom-width: 0;
+width: 145px;
+}
+
+#ddblueblockmenu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+font: normal 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
+}
+
+#ddblueblockmenu li a{
+display: block;
+padding: 3px 0;
+padding-left: 9px;
+width: 129px; /*185px minus all left/right paddings and margins*/
+text-decoration: none;
+color: white;
+background-color: #009966;
+border-bottom: 1px solid #000066;
+border-left: 7px solid #000066;
+}
+
+* html #ddblueblockmenu li a{ /*IE only */
+width: 147px; /*IE 5*/
+w\idth: 129px; /*185px minus all left/right paddings and margins*/
+}
+
+#ddblueblockmenu li a:hover {
+background-color: #003366;
+border-left-color: #003366;
+text-decoration:none;
+}
+
+#ddblueblockmenu div.menutitle{
+color: white;
+border-bottom: 1px solid black;
+padding: 1px 0;
+padding-left: 5px;
+background-color: 003366;
+font: bold 90% 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
+}
+
+</style>
+
+<div id="ddblueblockmenu">
+	
+	<div class="menutitle"><h:outputText value="Product Lines" /></div>
+</div>
+	<!--<ul>
+		<c:forEach var="productLine" items="#{offenderController.offenderList}" >
+			<li><a href="faces/jsp/lab2/showProductLine.jspx?productLine=#{productLine.productLine}"><h:outputText value="#{productLine.productLine}" /></a></li>
+		</c:forEach>
+	</ul>-->
+
+
+</span>
+
+</ui:composition>
+</jsp:root>
+
+

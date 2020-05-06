@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Popup Charges Query</ui:define>
+  <ui:define name="content">
+	<script type="text/javascript" language="JavaScript1.1">			
+function doSave(description, section,chargeId) {
+	var formId = window.name;
+	window.opener.document.getElementById(formId + ":description").value = description;
+	window.opener.document.getElementById(formId + ":section").value = section;	
+	window.opener.document.getElementById(formId + ":chargeId").value = chargeId;	
+	window.opener.focus();
+	window.close();			
+}			
+	</script>
+	<h:form id="searchForm">
+
+		<h:message for="searchForm" infoStyle="color: green" warnStyle="color: red" />
+
+		<h:panelGrid columns="2">
+			<h:outputText value="Act: "></h:outputText>
+			<h:inputText value="#{chargesQueryController.act}"></h:inputText>
+			<h:commandButton value="Search" action="#{chargesQueryController.doSearch }"></h:commandButton>
+		</h:panelGrid>	
+		
+		<h:dataTable border="1" value="#{chargesQueryController.chargeslist}" var="charge">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ChargesID"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{charge.charge_ID}"></h:outputText>					
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Description"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{charge.description} "></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Section"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{charge.section} "></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Susp Length"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{charge.susp_length} "></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:outputLink value="#" onclick="doSave('#{charge.description}','#{charge.section}','#{charge.charge_ID} }');">
+					<h:outputText value="select"></h:outputText>					
+				</h:outputLink>
+			</h:column>
+		</h:dataTable>
+		
+    </h:form>
+
+  </ui:define>
+ </ui:composition>
+</jsp:root>

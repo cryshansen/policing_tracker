@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Prosecution Listing</ui:define>
+  <ui:define name="content">
+  
+  	<script type="text/javascript" language="JavaScript1.1">			
+function doPopup(obj) {
+	popup = window.open("faces/jsp/lab2/popupOffenderQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}		
+function doPopup2(obj) {
+	popup = window.open("faces/jsp/lab2/popupChargesQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}
+function doPopup3(obj) {
+	popup = window.open("faces/jsp/lab2/popupOfficerQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}	
+	</script>
+  
+  	<h:outputText value="Search Prosecutions" style="font-size: 16pt; font-weight: bold" rendered="#{not prosecutionController.editMode}"/> 
+ 	<h:outputText value="Update Prosecutions" style="font-size: 16pt; font-weight: bold" rendered="#{prosecutionController.editMode}"/> 
+
+	<h:form id="prosecutionForm">
+ 		
+  		<h:message for="prosecutionForm" infoStyle="color: green" errorStyle="color: red" fatalStyle="color: red"></h:message>
+
+		<h:messages errorStyle="color: red" fatalStyle="color: red" globalOnly="true" ></h:messages>
+  		
+  		<h:panelGrid columns="3">
+  			<h:outputText value="Offender: "></h:outputText>
+  			<h:panelGroup>
+	  			<h:inputText id="firstName" value="#{findProsecutionsBean.offirstName}" 
+	  			
+	  			rendered="#{not findProsecutionsBean.editMode}"></h:inputText>		
+				<h:commandButton value="..." onclick="doPopup(this); return false;" 
+				rendered="#{ not findProsecutionsBean.editMode}"></h:commandButton>
+    			<h:outputText id="lastName:" value="#{findProsecutionsBean.oflastName}" 
+	  			 rendered="#{findProsecutionsBean.editMode}"></h:outputText>		  			
+  				<h:inputHidden id="offenderId" value="#{findProsecutionsBean.offenderId1}"></h:inputHidden>
+  			</h:panelGroup>
+  			<h:outputText value="Charges: "></h:outputText>
+  			<h:panelGroup>
+	  			<h:inputText id="Description:" value="#{findProsecutionsBean.description}" 
+	  			
+	  			rendered="#{not findProsecutionsBean.editMode}"></h:inputText>		
+				<h:commandButton value="..." onclick="doPopup(this); return false;" 
+				rendered="#{ not findProsecutionsBean.editMode}"></h:commandButton>
+    			<h:outputText id="Section:" value="#{findProsecutionsBean.section}" 
+	  			 rendered="#{findProsecutionsBean.editMode}"></h:outputText>		  			
+  				<h:inputHidden id="chargeId" value="#{findProsecutionsBean.chargesId}"></h:inputHidden>
+  			</h:panelGroup>
+  				<h:outputText value="File Year: "></h:outputText>
+ 				<h:inputText id="fileYear" value="#{prosecutionController.fileyear}"></h:inputText>
+ 				<h:outputText></h:outputText>
+  				<h:outputText value="Docket Ticket Number: "></h:outputText>
+ 				<h:inputText id="docketTicketNumber" value="#{prosecutionController.docketTicketNumber}"></h:inputText>
+  			<h:selectOneMenu value="#{prosecutionController.selectChargerTypeDomainId}">
+				<f:selectItem itemLabel="Select charge type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.chargeTypeList}" var="chargeType" itemLabel="#{chargeType.rvLowValue}" itemValue="#{chargeType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+				<h:outputText value="Place Of Offence: "></h:outputText>
+ 				<h:inputText id="placeOfOffence" value="#{prosecutionController.placeOfOffence}"></h:inputText>
+			<h:selectOneMenu value="#{prosecutionController.selectTicketTypeDomainId}">
+				<f:selectItem itemLabel="Select charge type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.TicketTypeList}" var="ticketType" itemLabel="#{ticketType.rvLowValue}" itemValue="#{ticketType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+  				<h:outputText value="Place Of Trial:"></h:outputText>
+ 				<h:inputText id="placeOfTrial" value="#{ prosecutionController.placeOfTrial }" ></h:inputText>
+  			<h:selectOneMenu value="#{prosecutionController.selectInitiatedByDomainId}">
+				<f:selectItem itemLabel="Select charge type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.TicketTypeList}" var="ticketType" itemLabel="#{ticketType.rvLowValue}" itemValue="#{ticketType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+  			  	<h:outputText value="Officer Name: "></h:outputText>
+			<h:panelGroup>
+   		  		<h:inputText id="officer" value=""></h:inputText>      
+		  		<h:commandButton value="..." onclick="doPopup3(this); return false;"></h:commandButton>		
+				<h:outputText value="Badge: "></h:outputText>
+   				<h:inputText id="badge" value=""></h:inputText> 
+  				<h:inputHidden id="officerId" value="#{prosecutionController.officerId1}"></h:inputHidden>
+			</h:panelGroup>
+ 
+  			<h:outputText value=" "></h:outputText>
+ 			<h:commandButton value="Search Prosecutions" action="#{findProsecutionsBean.findProseuctionsByAll }" 
+ 			rendered="#{not findProsecutionsBean.editMode}"></h:commandButton>
+  		</h:panelGrid>
+  		
+  		<t:dataTable id="tableData" 
+					value="#{findProsecutionsBean.prosecutionsList }" 
+					var="prosecution"
+					styleClass="dataTable" headerClass="dataTableHeader" rowClasses="evenRow,oddRow">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="ID"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.prosecution_id}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Offender" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.offenderId.firstName}  #{prosecution.offenderId.lastName}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Charge" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.chargeId.act_id.acts}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="File Year" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.fileyear}"></h:outputText>
+					</h:column>	
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="District Code" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.districtcode.code}"></h:outputText>
+					</h:column>
+					<h:column>	
+						<f:facet name="header">
+							<h:outputText value="ChargeTypeDomainID" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.chargerTypeDomainId.rvLowValue}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Place Of Offence" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.placeOfOffence}"></h:outputText>
+					</h:column>
+					<h:column>	
+						<f:facet name="header">
+							<h:outputText value="TicketTypeDomainID" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.ticketTypeDomainId.rvLowValue}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Place Of Trial" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.placeOfTrial}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Officer" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{prosecution.officer_Id.officer}"></h:outputText>
+					</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:commandButton action="#{findProsecutionsBean.editProsecution}" value="edit" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:commandButton action="#{prosecutionController.deletePayment}" value="delete" 
+				onclick="return confirm('are you sure you want to delete this record?')"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:commandButton action="#{prosecutionController.reportProsecution}" value="report" />
+			</h:column>
+			
+			</t:dataTable>
+			<h:commandButton value="Add Prosecution" action="#{prosecutionController.addNew }"></h:commandButton>
+  	</h:form>
+  </ui:define>
+</ui:composition>
+</jsp:root>

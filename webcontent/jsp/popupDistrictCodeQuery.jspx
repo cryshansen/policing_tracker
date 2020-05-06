@@ -1,0 +1,64 @@
+
+popupDIstrictCodeQuery
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	version="2.0">	
+<ui:composition>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script type="text/javascript" language="javascript">
+function doSave(offenderId) {
+	var formId = window.name;
+	window.opener.document.getElementById(formId + ":districtcode").value = offenderId;
+	window.opener.focus();
+	window.close();
+}			
+	</script>
+</head>
+<body>
+			
+	<h:form id="searchForm">
+
+		<h:message for="searchForm" infoStyle="color: green" warnStyle="color: red" />
+
+		<h:panelGrid columns="2">
+			<h:outputText value="description: "></h:outputText>
+			<h:inputText value="#{customerQueryBean.description}"></h:inputText>
+			
+			
+			<h:outputText></h:outputText>
+			<h:commandButton value="Search" action="#{customerQueryBean.doSearch}"></h:commandButton>
+		</h:panelGrid>	
+		
+		<h:dataTable border="1" value="#{customerQueryBean.districtList}" var="district">
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="district"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{district.code}"></h:outputText>					
+			</h:column><h:column>
+				<f:facet name="header">
+					<h:outputText value="description"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{district.description}"></h:outputText>					
+			</h:column>
+
+		
+				<h:outputLink value="#" onclick="doSave('#{district.code}');">
+					<h:outputText value="select"></h:outputText>					
+				</h:outputLink>
+			</h:column>
+		</h:dataTable>
+		
+    </h:form>
+</body>
+</html>    
+
+</ui:composition>
+</jsp:root>

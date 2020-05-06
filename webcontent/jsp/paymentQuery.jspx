@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	version="2.0">
+<ui:composition template="/jsp/cmi/template.jspx"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+  <ui:define name="title">Payment Maintenance</ui:define>
+  <ui:define name="content">
+  
+   	<script type="text/javascript" language="JavaScript1.1">			
+function doPopup(obj) {
+	popup = window.open("faces/jsp/cmi/popupCustomerQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}			
+	</script>
+  
+   <style>
+.customerNameColumn {
+	width:200px;
+}
+.checkNumberColumn {
+	width:100px;
+	text-align: center;
+}
+.paymentDateColumn {
+	width:100px;
+}
+.amountColumn {
+	width:100px;
+	text-align: right;
+}
+.commandColumn {
+	width:50px;
+	text-align: center;
+}
+
+    </style>
+        
+	<h:form id="searchForm">
+ 		
+  		<h:message for="searchForm" infoStyle="color: green" errorStyle="color: red" fatalStyle="color: red"></h:message>
+
+		<h:messages errorStyle="color: red" fatalStyle="color: red" globalOnly="true" ></h:messages>
+  		
+  		<h:panelGrid columns="2">
+  			<h:outputText value="Customer Name: "></h:outputText>
+  			<h:panelGroup>
+	  			<h:inputText id="customerName" value="#{paymentController.customerName}"></h:inputText>		
+  				<h:commandButton value="..." onclick="doPopup(this); return false;"></h:commandButton>
+  				<h:inputHidden id="customerNumber" value="#{paymentController.customerNumber}"></h:inputHidden>
+  			</h:panelGroup>
+  			<h:outputText value="Check Number: "></h:outputText>
+  			<h:inputText id="checkNumber" value="#{paymentController.checkNumber}"></h:inputText>
+   			<h:outputText value=""></h:outputText>
+ 			<h:commandButton value="Search" action="#{paymentController.doSearch}"></h:commandButton>
+  		</h:panelGrid>
+ 		
+ 		<h:commandButton action="#{paymentController.addNew}" value="New Payment"/>
+ 		
+ 		<rich:datascroller align="left"  for="tableData" maxPages="10" />
+        <rich:spacer height="20" />
+        <rich:dataTable width="700" id="tableData" rows="10" 
+        	columnClasses="customerNameColumn,checkNumberColumn,paymentDateColumn,amountColumn,commandColumn,commandColumn,commandColumn"
+            value="#{paymentController.paymentList}" var="payment">
+        	<f:facet name="header">
+            	<rich:columnGroup>
+                	<h:column>
+                    	<h:outputText value="Customer Name" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="Check Number" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="Payment Date" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="Amount" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="" />
+                    </h:column>
+                    <h:column> 
+                        <h:outputText value="" />
+                    </h:column>
+                </rich:columnGroup>
+            </f:facet>
+
+            <h:column>
+	            <h:outputText value="#{payment.id.customer.customerName}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{payment.id.checkNumber}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{payment.paymentDate}" />
+            </h:column>
+            <h:column>
+                <h:outputText value="#{payment.amount}" >
+					<f:convertNumber type="currency" currencySymbol="$"/>
+				</h:outputText>
+            </h:column>
+			<h:column>
+				<h:commandButton action="#{paymentController.editPayment}" value="edit"/>
+			</h:column>
+			<h:column>
+				<h:commandButton action="#{paymentController.deletePayment}" value="delete" 
+				onclick="return confirm('are you sure you want to delete this record?')"/>
+			</h:column>
+			<h:column>
+				<h:commandButton  value="report"/>
+			</h:column>
+		</rich:dataTable>
+ 
+  	</h:form>
+
+  </ui:define>
+</ui:composition>
+</jsp:root>

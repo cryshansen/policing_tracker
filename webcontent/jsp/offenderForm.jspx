@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Offender Form</ui:define>
+  <ui:define name="content">
+  
+  	<script type="text/javascript" language="JavaScript1.1">			
+function doPopup(obj) {
+	popup = window.open("faces/jsp/lab2/popupOffenderQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}			
+	</script>
+  <h:outputText value="Add Offender" style="font-size: 16pt; font-weight: bold" rendered="#{not offenderController.editMode}"/> 
+ 	<h:outputText value="Update Offender" style="font-size: 16pt; font-weight: bold" rendered="#{offenderController.editMode}"/> 
+ 	
+ 	<h:form id="offenderForm">
+ 		
+  		<h:message for="offenderForm" infoStyle="color: blue" errorStyle="color: red" fatalStyle="color: red"></h:message>
+
+		<h:messages errorStyle="color: red" fatalStyle="color: red" globalOnly="true" ></h:messages>
+  		
+  		<h:panelGrid columns="2">
+  			<h:outputText value="Offender Id: "></h:outputText>
+  			<h:panelGroup>
+	  					
+    			<h:outputText id="offenderID1" value="#{offenderController.offenderId}" 
+	  			 rendered="#{offenderController.editMode}"></h:outputText>		  			
+  				<h:inputHidden id="offenderID" value="#{offenderController.offenderId}"></h:inputHidden>
+  			</h:panelGroup>
+  			
+  			<h:outputText value="First Name: "></h:outputText>
+ 			<h:inputText id="firstName" value="#{offenderController.firstName}"	>
+ 			</h:inputText>
+   			
+   			
+  			<h:outputText value="Last Name: "></h:outputText>
+ 			<h:inputText id="lastName" value="#{offenderController.lastName}">
+ 			</h:inputText>
+   			
+  			
+			<h:outputText value="Middle Name: "></h:outputText>
+ 			<h:inputText id="middleName" value="#{offenderController.middleName}" >
+ 			</h:inputText>
+   			
+   			
+   			<h:outputText value="Date Of Birth: "></h:outputText>
+ 			<rich:calendar id="dob" value="#{offenderController.dob}" ></rich:calendar>
+   			
+
+  			<h:outputText value="Address: "></h:outputText>
+  			<h:inputText  id="address" value="#{offenderController.address }"
+  			required="true" 
+ 			requiredMessage="Address is required."></h:inputText>
+  			
+  			
+  			<h:outputText value="City: "></h:outputText>
+ 			<h:inputText id="city" value="#{offenderController.city}" >
+ 			</h:inputText>
+   			
+   			
+   			<h:outputText value="Prov: "></h:outputText>
+ 			<h:inputText id="prov" value="#{offenderController.province}" >
+ 			</h:inputText>
+   			
+   			
+   			<h:outputText value="Postal Code: "></h:outputText>
+ 			<h:inputText id="postalcode" value="#{offenderController.postalCode}" >
+ 			</h:inputText>
+   			
+   			
+   			<h:outputText value="Phone: "></h:outputText>
+ 			<h:inputText id="phone1" value="#{offenderController.phone1}" >
+ 			</h:inputText>
+ 			
+ 			<h:outputText value="Phone 2: "></h:outputText>
+ 			<h:inputText id="phone2" value="#{offenderController.phone2}">
+ 			</h:inputText>
+ 			<h:outputText value="sex: "></h:outputText>
+ 			<h:selectOneRadio id="sex" value="#{offenderController.sex}">
+ 			<f:selectItem  itemLabel="Male" itemValue="M"></f:selectItem>
+ 			<f:selectItem  itemLabel="Female" itemValue="F"></f:selectItem>
+ 			</h:selectOneRadio>
+ 			<h:outputText value="Hunter Test Count: "></h:outputText>
+ 			<h:inputText id="hunterTestCount" value="#{offenderController.hunterTestCount}">
+ 			</h:inputText>
+ 			
+ 			<h:outputText value="Hunter Test Date: "></h:outputText>
+ 			<rich:calendar id="hunterTestDate" value="#{offenderController.hunterTestDate}">
+ 			</rich:calendar>
+ 			
+ 			
+ 			<h:outputText value="Rec Hunter Eligible Flag: "></h:outputText>
+ 			<h:inputText id="recHuntEligibleFlage" value="#{offenderController.recHuntEligibleFlag}">
+ 			</h:inputText>
+ 			<h:outputText value="Rec Hunter Test Date: "></h:outputText>
+ 			<rich:calendar id="recHuntEndDate" value="#{offenderController.recHuntEndDate}">
+ 			</rich:calendar>
+ 			
+   			<h:outputText value="Rec Hunt OverRide Flag: "></h:outputText>
+ 			<h:inputText id="recHuntOvRideFlag" value="#{offenderController.recHuntOvRideFl}">
+ 			</h:inputText>
+
+   			<h:outputText value=""></h:outputText>
+ 			<h:commandButton value="Add" action="#{offenderController.addOffender}" 
+ 			rendered="#{not offenderController.editMode}"></h:commandButton>
+ 			<h:panelGroup>
+ 				<h:commandButton value="Update Offender" action="#{offenderController.updateOffender}" 
+ 				rendered="#{offenderController.editMode}"></h:commandButton>
+	 			<h:commandButton value="Cancel" action="#{offenderController.addNew}" 
+	 			rendered="#{offenderController.editMode}"></h:commandButton>		
+ 			</h:panelGroup>
+  		</h:panelGrid>
+  	</h:form>
+  </ui:define>
+</ui:composition>
+</jsp:root>

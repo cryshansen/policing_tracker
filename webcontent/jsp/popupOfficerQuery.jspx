@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Popup Officer Query</ui:define>
+  <ui:define name="content">
+	<script type="text/javascript" language="JavaScript1.1">			
+function doSave(officer, badge,officerId) {
+	var formId = window.name;
+	window.opener.document.getElementById(formId + ":officer").value = officer;
+	window.opener.document.getElementById(formId + ":badge").value = badge;	
+	window.opener.document.getElementById(formId + ":officerId").value = officerId;	
+	window.opener.focus();
+	window.close();			
+}			
+	</script>
+	<h:form id="searchForm">
+
+		<h:message for="searchForm" infoStyle="color: green" warnStyle="color: red" />
+
+		<h:panelGrid columns="2">
+			<h:outputText value="Officer Name: "></h:outputText>
+			<h:inputText value="#{officerQueryController.officer}"></h:inputText>
+			<h:outputText value="Badge: "></h:outputText>
+			<h:inputText value="#{officerQueryController.badge}"></h:inputText>
+			
+			<h:commandButton value="Search" action="#{officerQueryController.doSearch}"></h:commandButton>
+		</h:panelGrid>	
+		
+		<h:dataTable border="1" value="#{officerQueryController.officerlist}" var="officer1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="OfficerID"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{officer1.officer_ID}"></h:outputText>					
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Officer Name"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{officer1.officer}"></h:outputText>					
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Badge"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{officer1.badge} "></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Active" ></h:outputText>
+				</f:facet>
+				<h:outputText value="#{officer1.active}" ></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:outputLink value="#" onclick="doSave('#{officer1.officer}','#{officer1.badge}','#{officer.officer_ID} });">
+					<h:outputText value="select"></h:outputText>					
+				</h:outputLink>
+			</h:column>
+		</h:dataTable>
+		
+    </h:form>
+
+  </ui:define>
+ </ui:composition>
+</jsp:root>

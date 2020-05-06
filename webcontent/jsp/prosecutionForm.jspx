@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Prosecution Form</ui:define>
+  <ui:define name="content">
+  
+  	<script type="text/javascript" language="JavaScript1.1">			
+function doPopup(obj) {
+	popup = window.open("faces/jsp/lab2/popupOffenderQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}
+function doPopup2(obj) {
+	popup = window.open("faces/jsp/lab2/popupChargeQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}	
+function doPopup4(obj) {
+	popup = window.open("faces/jsp/lab2/popupOfficerQuery.jspx", obj.form.id,
+	"height=500,width=700,toolbar=no,menubar=yes,scrollbars=yes");
+	popup.focus();
+}
+		
+	</script>
+  
+	<h:outputText value="Add Prosecutions" style="font-size: 16pt; font-weight: bold" rendered="#{not prosecutionController.editMode}"/> 
+ 	<h:outputText value="Update Prosecutions" style="font-size: 16pt; font-weight: bold" rendered="#{prosecutionController.editMode}"/> 
+	
+	<h:form id="prosecutionForm">
+	
+  		<h:message for="prosecutionForm" infoStyle="color: green" errorStyle="color: red" fatalStyle="color: red"></h:message>
+
+		<h:messages errorStyle="color: red" fatalStyle="color: red" globalOnly="true" ></h:messages>
+	
+
+		<h:panelGrid border="1" columns="3" columnClasses="evenColumn,oddColumn">
+		
+			<h:outputLabel value="Prosecution Id:"></h:outputLabel>
+			<h:outputText id="prosecutionId" value="#{prosecutionController.prosecution.prosecution_id}" 
+			rendered="#{not prosecutionController.editMode}"></h:outputText>
+			<h:outputText id="prosecution1" value="#{prosecutionController.prosecution.prosecution_id}" 
+			rendered="#{prosecutionController.editMode}"></h:outputText>
+			<h:outputText></h:outputText>
+			
+			<h:outputLabel value="Offender:"></h:outputLabel>
+			<h:inputText id="firstName" value="#{prosecutionController.prosecution.offenderId.firstName}" ></h:inputText>
+			<h:inputText id="lastName" value="#{prosecutionController.prosecution.offenderId.lastName}" ></h:inputText>
+			<h:commandButton value="..." onclick="doPopup(this); return false;" 
+				rendered="#{ not prosecutionController.editMode}"></h:commandButton>
+				<h:inputHidden id="offenderId" value="#{findProsecutionsBean.prosecution.offenderId}"></h:inputHidden>
+			<h:outputLabel value="Charge:"></h:outputLabel>
+			<h:inputText id="description" value="#{prosecutionController.prosecution.chargeId.description}" ></h:inputText>
+			<h:inputText id="section" value="#{prosecutionController.prosecution.chargeId.section}" ></h:inputText>
+			<h:commandButton value="..." onclick="doPopup2(this); return false;" 
+				rendered="#{ not prosecutionController.editMode}"></h:commandButton>
+			<h:inputHidden id="chargeId" value="#{findProsecutionsBean.prosecution.chargeId}"></h:inputHidden>
+			
+			<h:outputLabel value="Officer Id:"></h:outputLabel>
+			<h:inputText id="officer" value="#{prosecutionController.prosecution.officer_Id.officer}" ></h:inputText>
+			<h:inputText id="badge" value="#{prosecutionController.prosecution.officer_Id.badge}" ></h:inputText>
+			<h:commandButton value="..." onclick="doPopup4(this); return false;" 
+				rendered="#{ not prosecutionController.editMode}"></h:commandButton>	
+			<h:inputHidden id="officerId" value="#{findProsecutionsBean.prosecution.officer_Id}"></h:inputHidden>
+
+			
+			<h:outputLabel value="File year:"></h:outputLabel>
+			<h:outputText id="fileyear" value="#{prosecutionController.prosecution.fileyear}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="DocketTicket Number:"></h:outputLabel>
+			<h:inputText id="docketTicketNumber" value="#{prosecutionController.prosecution.docketticketNumber}" ></h:inputText>
+			<h:outputLabel value="Previous Related Conviction:"></h:outputLabel>
+			<h:inputText id="prevRelatedConv" value="#{prosecutionController.prosecution.prevRelatedConv}" ></h:inputText>
+			
+			<h:selectOneMenu value="#{prosecutionController.prosecution.chargerTypeDomainId}">
+				<f:selectItem itemLabel="Select charge type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.chargeTypeList}" var="chargeType" itemLabel="#{chargeType.rvLowValue}" itemValue="#{chargeType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+			<h:selectOneMenu value="#{prosecutionController.prosecution.initiatedByDomainID}">
+				<f:selectItem itemLabel="Select violation type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.initiatedByList}" var="initiatedType" itemLabel="#{initiatedType.rvLowValue}" itemValue="#{initiatedType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+			
+			<h:selectOneMenu value="#{prosecutionController.prosecution.suspendOffDomainId}">
+				<f:selectItem itemLabel="Select suspend type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.suspendList}" var="suspendType" itemLabel="#{suspendType.rvLowValue}" itemValue="#{suspendType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+			
+			<h:selectOneMenu value="#{prosecutionController.prosecution.ticketTypeDomainId}">
+				<f:selectItem itemLabel="Select ticket type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.ticketList}" var="ticketType" itemLabel="#{ticketType.rvLowValue}" itemValue="#{ticketType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+			
+			<h:selectOneMenu value="#{prosecutionController.prosecution.regCommunDomainId}">
+				<f:selectItem itemLabel="Select violation type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.regCommunList}" var="regCommunType" itemLabel="#{regCommunType.rvLowValue}" itemValue="#{regCommunType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+			
+			<h:selectOneMenu value="#{prosecutionController.prosecution.violationTypeDomainId}">
+				<f:selectItem itemLabel="Select violation type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.violationList}" var="violationType" itemLabel="#{violationType.rvLowValue}" itemValue="#{violationType.enforRefCodeID}"></t:selectItems>
+			</h:selectOneMenu>
+			<h:outputLabel value="CourtDate:"></h:outputLabel>
+			<rich:calendar id="courtDate" value="#{prosecutionController.prosecution.courtDate}" ></rich:calendar>
+			<h:outputLabel value="Circumstance Details:"></h:outputLabel>
+			<h:inputText id="circumstanceDetails" value="#{prosecutionController.prosecution.circumstanceDetails}" ></h:inputText>
+			<h:outputLabel value="Min Fin:"></h:outputLabel>
+			<h:inputText id="minFine" value="#{prosecutionController.prosecution.min_fine}" ></h:inputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Max Fin:"></h:outputLabel>
+			<h:inputText id="maxFine" value="#{prosecutionController.prosecution.max_fine}" ></h:inputText>
+			<h:outputText></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Offence Timestamp:"></h:outputLabel>
+			<rich:calendar id="offenceTmst" value="#{prosecutionController.prosecution.offenceTmst}" ></rich:calendar>
+
+			<h:outputLabel value="Place Of Offence:"></h:outputLabel>
+			<h:inputText id="placeOfOffence" value="#{prosecutionController.prosecution.placeOfOffence}" ></h:inputText>
+			<h:outputText></h:outputText>
+			
+			<h:outputLabel value="Place Of Trial:"></h:outputLabel>
+			<h:inputText id="placeOfTrial" value="#{prosecutionController.prosecution.placeOfTrial}" ></h:inputText>
+
+			<h:outputLabel value="Penalty:"></h:outputLabel>
+			<h:inputText id="penalty" value="#{prosecutionController.prosecution.penalty}" ></h:inputText>
+	
+			<h:outputLabel value="warrant:"></h:outputLabel>
+			<h:inputText id="warrant" value="#{prosecutionController.prosecution.warrant}" ></h:inputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Penalty Fee:"></h:outputLabel>
+			<h:inputText id="penaltyFee" value="#{prosecutionController.prosecution.penalty_fee}" ></h:inputText>
+			<h:outputText></h:outputText>
+			<h:selectOneMenu value="#{prosecutionController.prosecution.species_id}">
+				<f:selectItem itemLabel="Select Species type, if any" itemValue=" "/>
+				<t:selectItems value="#{prosecutionController.speciesList}" var="speciesType" itemLabel="#{speciesType.description}" itemValue="#{speciesType.species_ID}"></t:selectItems>
+			</h:selectOneMenu>
+			
+			<h:outputLabel value=""></h:outputLabel>
+			<h:commandButton id="submitAdd" action="#{prosecutionController.addProsecution}" value="Add Prosecution" 
+	      	rendered="#{not prosecutionController.editMode}"/>
+	    	<h:commandButton id="submitUpdate" action="#{officeController.updateProsecution}" value="Update Prosecution" 
+	      	rendered="#{prosecutionController.editMode}"/>
+			
+		</h:panelGrid>
+		<br />
+  	</h:form>
+  </ui:define>
+</ui:composition>
+</jsp:root>

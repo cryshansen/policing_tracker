@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	version="2.0">
+<ui:composition>
+
+	<script type="text/javascript" src="css/dropdowntabfiles/dropdowntabs.js">	
+	/***********************************************
+	* Drop Down Tabs Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	* This notice MUST stay intact for legal use
+	* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+	***********************************************/
+	 </script>
+
+	<link rel="stylesheet" type="text/css" href="css/dropdowntabfiles/bluetabs.css" />
+	
+	
+	<h1>Saskatchewan Government - Ministry of Natural Resources</h1>
+	
+	<div id="bluemenu" class="bluetabs">
+		<ul>
+			<li><a href="faces/jsp/lab2/index.jspx">Home</a></li>
+			<li><a href="faces/jsp/lab2/offenderListing.jspx" rel="dropmenu1">Offenders</a></li>
+			<li><a href="faces/jsp/lab2/chargesListing.jspx" rel="dropmenu2">Officer</a></li>
+			<li><a href="faces/jsp/lab2/prosecutionForm.jspx" rel="dropmenu3">Prosecution</a></li>
+	
+		</ul>
+	</div>
+				
+	<!--1st drop down menu -->                                                   
+	<div id="dropmenu1" class="dropmenudiv_b" style="width: 150px;">
+		<a href="faces/jsp/lab2/offenderListing.jspx">Maintenance</a>
+		<a href="faces/jsp/lab2/offenderForm.jspx">Add New Offender</a>
+	</div>
+		
+	<!--2nd drop down menu -->                                                
+	<div id="dropmenu2" class="dropmenudiv_b" style="width: 150px;">
+		<a href="faces/jsp/lab2/officerQuery.jspx">Maintenance</a>
+		<a href="faces/jsp/lab2/OfficerForm.jspx">Add New Officer</a>
+	</div>
+
+	<!--3rd drop down menu -->                                                
+	<div id="dropmenu3" class="dropmenudiv_b" style="width: 150px;">
+		<a href="faces/jsp/lab2/prosecutionListing.jspx">Maintenance</a>
+		<a href="faces/jsp/lab2/prosecutionForm.jspx">Add New Prosecution</a>
+		<a href="faces/jsp/lab2/prosecutionListing.jspx">Search Prosecutions</a>
+	</div>
+
+	
+	
+	<script type="text/javascript">
+	//SYNTAX: tabdropdown.init("menu_id", [integer OR "auto"])
+	tabdropdown.init("bluemenu")
+	</script>
+
+</ui:composition>
+</jsp:root>

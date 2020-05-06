@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	version="2.0">	
+
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Popup Offender Query</ui:define>
+  <ui:define name="content">
+   <script type="text/javascript" language="JavaScript1.1">
+function doSave(firstName, lastName) {
+	var formId = window.name;
+	window.opener.document.getElementById(formId + ":firstName").value = firstName;
+	window.opener.document.getElementById(formId + ":lastName").value = lastName;
+	window.opener.document.getElementById(formId + ":offenderId").value = offenderId;	
+	window.opener.focus();
+	window.close();
+}			
+	</script>
+
+			
+	<h:form id="searchForm">
+
+		<h:message for="searchForm" infoStyle="color: green" warnStyle="color: red" />
+
+		<h:panelGrid columns="2">
+			<h:outputText value="Offender First Name: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.firstName}"></h:inputText>
+			<h:outputText value="Last Name: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.lastName}"></h:inputText>
+			<h:outputText value="Offender Middle Name: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.middleName}"></h:inputText>
+			<h:outputText value="Address: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.address}"></h:inputText>
+			<h:outputText value="City: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.city}"></h:inputText>
+			<h:outputText value="Province: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.province}"></h:inputText>
+			<h:outputText value="Phone: "></h:outputText>
+			<h:inputText value="#{offenderQueryController.phone1}"></h:inputText>
+			
+			<h:commandButton value="Search" action="#{offenderQueryController.doSearch}"></h:commandButton>
+		</h:panelGrid>	
+		
+		
+		<h:dataTable border="1" value="#{offenderQueryController.offenderlist}" var="offender">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="First Name"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.firstName}"></h:outputText>					
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Last Name"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.lastName} "></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Middle Name"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.middleName} "></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Address"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.address} "></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="City"></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.city} "></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Prov" ></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.province}" ></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Phone" ></h:outputText>
+				</f:facet>
+				<h:outputText value="#{offender.phone1}" ></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:outputLink value="#" onclick="doSave('#{offender.firstName}','#{offender.lastName}','#{offender.offenderId}' });">
+					<h:outputText value="select"></h:outputText>					
+				</h:outputLink>
+			</h:column>
+		</h:dataTable>
+		
+    </h:form>
+
+  </ui:define>
+ </ui:composition>
+</jsp:root>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	version="2.0">
+
+<ui:composition >
+	
+<div class="footer">
+	<h:outputText value="&#169;" escape="false" /> 2007 Computer Systems Technology. 
+	This website was designed and built by <a href="mailto:pocket_goddess@hotmail.com">Crystal-is | c/o Crystal Hansen</a>.
+</div>
+
+</ui:composition>
+
+</jsp:root>

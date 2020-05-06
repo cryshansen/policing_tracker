@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Offender Form</ui:define>
+  <ui:define name="content">
+
+  <h:outputText value="Add Offender" style="font-size: 16pt; font-weight: bold" rendered="#{not offenderController.editMode}"/> 
+ 	<h:outputText value="Update Offender" style="font-size: 16pt; font-weight: bold" rendered="#{offenderController.editMode}"/> 
+ 	
+ 	<h:form id="offenderForm">
+ 		
+  		<h:message for="offenderForm" infoStyle="color: blue" errorStyle="color: red" fatalStyle="color: red"></h:message>
+
+		<h:messages errorStyle="color: red" fatalStyle="color: red" globalOnly="true" ></h:messages>
+  		
+  		<h:panelGrid columns="2">
+  			<h:outputText value="Offender Id: "></h:outputText>
+  			<h:panelGroup>
+    			<h:outputText id="offenderID1" value="#{offenderController.offenderId}" 
+	  			 rendered="#{not offenderController.editMode}"></h:outputText>		  			
+  				<h:inputHidden id="offenderID" value="#{offenderController.offenderId}"></h:inputHidden>
+  			</h:panelGroup>
+  			
+  			<h:outputText value="First Name: "></h:outputText>
+ 			<h:outputText id="firstName" value="#{offenderController.firstName}"	>
+ 			</h:outputText>
+   			
+   			
+  			<h:outputText value="Last Name: "></h:outputText>
+ 			<h:outputText id="lastName" value="#{offenderController.lastName}">
+ 			</h:outputText>
+   			
+  			
+			<h:outputText value="Middle Name: "></h:outputText>
+ 			<h:outputText id="middleName" value="#{offenderController.middleName}" >
+ 			</h:outputText>
+   			
+   			
+   			<h:outputText value="Date Of Birth: "></h:outputText>
+ 			<rich:calendar id="dob" value="#{offenderController.dob}" ></rich:calendar>
+   			
+
+  			<h:outputText value="Address: "></h:outputText>
+  			<h:outputText  id="address" value="#{offenderController.address }"></h:outputText>
+  			
+  			
+  			<h:outputText value="City: "></h:outputText>
+ 			<h:outputText id="city" value="#{offenderController.city}" >
+ 			</h:outputText>
+   			
+   			
+   			<h:outputText value="Prov: "></h:outputText>
+ 			<h:outputText id="prov" value="#{offenderController.province}" >
+ 			</h:outputText>
+   			
+   			
+   			<h:outputText value="Postal Code: "></h:outputText>
+ 			<h:outputText id="postalcode" value="#{offenderController.postalCode}" >
+ 			</h:outputText>
+   			
+   			
+   			<h:outputText value="Phone: "></h:outputText>
+ 			<h:outputText id="phone1" value="#{offenderController.phone1}" >
+ 			</h:outputText>
+ 			
+ 			<h:outputText value="Phone 2: "></h:outputText>
+ 			<h:outputText id="phone2" value="#{offenderController.phone2}">
+ 			</h:outputText>
+ 			<h:outputText value="sex: "></h:outputText>
+ 			<h:outputText id="sex" value="#{offenderController.sex}"></h:outputText>
+ 			<h:outputText value="Hunter Test Count: "></h:outputText>
+ 			<h:outputText id="hunterTestCount" value="#{offenderController.hunterTestCount}"></h:outputText>
+ 			
+ 			<h:outputText value="Hunter Test Date: "></h:outputText>
+ 			<h:outputText id="hunterTestDate" value="#{offenderController.hunderTestDate}">
+ 			</h:outputText>
+ 			
+ 			
+ 			<h:outputText value="Rec Hunter Eligible Flag: "></h:outputText>
+ 			<h:outputText id="recHuntEligibleFlage" value="#{offenderController.recHuntEligibleFlag}">
+ 			</h:outputText>
+ 			<h:outputText value="Rec Hunter Test Date: "></h:outputText>
+ 			<h:outputText id="recHuntEndDate" value="#{offenderController.recHuntEndDate}">
+ 			</h:outputText>
+ 			
+   			<h:outputText value="Rec Hunt OverRide Flag: "></h:outputText>
+ 			<h:outputText id="recHuntOvRideFlag" value="#{offenderController.recHuntOverRideFlag}">
+ 			</h:outputText>
+  		</h:panelGrid>
+  	</h:form>
+  </ui:define>
+</ui:composition>
+</jsp:root>

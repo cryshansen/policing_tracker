@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx">
+
+  <ui:define name="title">Prosecution Report</ui:define>
+  <ui:define name="content">
+
+  <h:outputText value="Prosecution Report" style="font-size: 16pt; font-weight: bold" rendered="#{not prosecutionController.editMode}"/> 
+ 	<h:outputText value="Prosecution Report" style="font-size: 16pt; font-weight: bold" rendered="#{prosecutionController.editMode}"/> 
+ 	
+ 	<h:form id="prosecutionRep">
+ 		
+  		<h:message for="prosecutionRep" infoStyle="color: blue" errorStyle="color: red" fatalStyle="color: red"></h:message>
+
+		<h:messages errorStyle="color: red" fatalStyle="color: red" globalOnly="true" ></h:messages>
+  		
+  		<h:panelGrid columns="3">
+  			
+			<h:outputLabel value="Prosecution Id:"></h:outputLabel>
+			<h:outputText id="prosecutionId" value="#{prosecutionController.prosecution.prosecution_id}" ></h:outputText>
+			
+			<h:outputLabel value="Offender:"></h:outputLabel>
+			<h:outputText id="firstName" value="#{prosecutionController.prosecution.offenderId.firstName}" ></h:outputText>
+			<h:outputText id="lastName" value="#{prosecutionController.prosecution.offenderId.lastName}" ></h:outputText>
+
+			<h:outputLabel value="Charge:"></h:outputLabel>
+			<h:outputText id="description" value="#{prosecutionController.prosecution.chargeId.description}" ></h:outputText>
+			<h:outputText id="section" value="#{prosecutionController.prosecution.chargeId.section}" ></h:outputText>
+		
+			<h:outputLabel value="Officer Id:"></h:outputLabel>
+			<h:outputText id="officer" value="#{prosecutionController.prosecution.officer_id.officer}" ></h:outputText>
+			<h:outputText id="badge" value="#{prosecutionController.prosecution.officerId.badge}" ></h:outputText>
+			
+			<h:outputLabel value="File year:"></h:outputLabel>
+			<h:outputText id="fileyear" value="#{prosecutionController.prosecution.fileyear}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="DocketTicket Number:"></h:outputLabel>
+			<h:outputText id="docketTicketNumber" value="#{prosecutionController.prosecution.docketticketNumber}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Previous Related Conviction:"></h:outputLabel>
+			<h:outputText id="prevRelatedConv" value="#{prosecutionController.prosecution.prevRelatedConv}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Charger Type:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.chargerTypeDomainId.rvLowValue}"></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Initiated Type:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.initiatedByDomainID.rvLowValue}"></h:outputText>
+			
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Suspend Type:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.suspendOffDomainId.rvLowValue}"></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Ticket Type:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.ticketTypeDomainId.rvLowValue}"></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Reg Community Type:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.regCommunDomainId.rvLowValue}"></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Violation Type:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.violationTypeDomainId.rvLowValue}"></h:outputText>
+			<h:outputText></h:outputText>
+			
+			<h:outputLabel value="CourtDate:"></h:outputLabel>
+			<h:outputText id="courtDate" value="#{prosecutionController.prosecution.courtDate}" ></h:outputText>
+			<h:outputText></h:outputText>
+			
+			<h:outputLabel value="Circumstance Details:"></h:outputLabel>
+			<h:outputText id="circumstanceDetails" value="#{prosecutionController.prosecution.circumstanceDetails}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Min Fin:"></h:outputLabel>
+			<h:outputText id="minFine" value="#{prosecutionController.prosecution.min_fine}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Max Fin:"></h:outputLabel>
+			<h:outputText id="maxFine" value="#{prosecutionController.prosecution.max_fine}" ></h:outputText>
+			<h:outputText></h:outputText>
+			
+			<h:outputLabel value="Offence Timestamp:"></h:outputLabel>
+			<h:outputText id="offenceTmst" value="#{prosecutionController.prosecution.offenceTmst}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Place Of Offence:"></h:outputLabel>
+			<h:outputText id="placeOfOffence" value="#{prosecutionController.prosecution.placeOfOffence}" ></h:outputText>
+			<h:outputText></h:outputText>
+			
+			<h:outputLabel value="Place Of Trial:"></h:outputLabel>
+			<h:outputText id="placeOfTrial" value="#{prosecutionController.prosecution.placeOfTrial}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Penalty:"></h:outputLabel>
+			<h:outputText id="penalty" value="#{prosecutionController.prosecution.penalty}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="warrant:"></h:outputLabel>
+			<h:outputText id="warrant" value="#{prosecutionController.prosecution.warrant}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Penalty Fee:"></h:outputLabel>
+			<h:outputText id="penaltyFee" value="#{prosecutionController.prosecution.penalty_fee}" ></h:outputText>
+			<h:outputText></h:outputText>
+			<h:outputLabel value="Species:"></h:outputLabel>
+			<h:outputText value="#{prosecutionController.prosecution.species_id.description}"></h:outputText>
+  			
+  		</h:panelGrid>
+  	</h:form>
+  </ui:define>
+</ui:composition>
+</jsp:root>

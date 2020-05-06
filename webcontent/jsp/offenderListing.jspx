@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	version="2.0">
+<ui:composition template="/jsp/lab2/template.jspx"
+	xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+  <ui:define name="title">Offender Listing</ui:define>
+  <ui:define name="content">
+
+			<f:loadBundle basename="resources.messages" var="msg" />
+			
+			<h:form>
+				
+				<t:dataTable id="tableData" 
+					value="#{offenderController.offenderList}" 
+					var="offender"
+					styleClass="dataTable" headerClass="dataTableHeader" rowClasses="evenRow,oddRow">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Offender First Name"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.firstName}" escape ="false"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Last Name" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.lastName}" escape ="false"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Middle Name" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.middleName}"></h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Date of Birth" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.dob}"></h:outputText>
+					</h:column>
+				<h:column>
+						<f:facet name="header">
+							<h:outputText value="Address" escape ="false"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.address}" escape ="false"></h:outputText>
+					</h:column>	
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="City" escape ="false"></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.city}" escape ="false"></h:outputText>
+					</h:column>
+					<h:column>	
+						<f:facet name="header">
+							<h:outputText value="Prov" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.province}"></h:outputText>
+					</h:column>
+					<h:column>
+						
+						<f:facet name="header">
+							<h:outputText value="Postal Code" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.postalCode}"></h:outputText>
+					</h:column>
+					<h:column>
+						
+						<f:facet name="header">
+							<h:outputText value="phone" ></h:outputText>
+						</f:facet>
+						<h:outputText value="#{offender.phone1}"></h:outputText>
+					</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:commandLink action="#{offenderController.editOffender}" value="edit" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:commandLink action="#{offenderController.deleteOffender}" value="delete" 
+				onclick="return confirm('are you sure you want to delete the record #{offender.offenderId}?')"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value=""></h:outputText>
+				</f:facet>
+				<h:commandLink action="#{offenderController.reportOffender}" value="report" />
+			</h:column>
+			</t:dataTable>
+		
+		<h:commandButton value="Add Offender" action="#{offenderController.addNew}"></h:commandButton>
+	</h:form>
+
+  </ui:define>
+</ui:composition>
+
+</jsp:root>
