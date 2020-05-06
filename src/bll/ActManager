@@ -1,0 +1,34 @@
+package lab2.bll;
+import java.util.Hashtable;
+import java.util.List;
+
+import lab2.dao.ActDao;
+import lab2.entity.Act;
+
+public class ActManager {
+
+	
+	private static ActDao actDao=lab2.util.SpringFactory.getActDao();
+	
+	public Act getActByActId(int act)
+	{
+		return actDao.getActByActId(act);
+	}
+	
+	public java.util.List<Act> getActs(){
+		return actDao.getActs() ;
+	}
+	public void addAct(Act act){
+		actDao.addAct(act);
+		
+	}
+	public void updateAct(Act act){
+		actDao.updateAct(act);
+		
+	}
+	public void deleteAct(Act act){
+		actDao.deleteAct(act);
+		
+	}
+	
+}
